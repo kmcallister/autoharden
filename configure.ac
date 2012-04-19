@@ -7,6 +7,17 @@ AC_PROG_CC
 AC_PROG_CXX
 
 
+# We want to check for compiler flag support, but there is no way to make
+# clang's "argument unused" warning fatal.  So we invoke the compiler through a
+# wrapper script that greps for this message.
+saved_CC="$CC"
+saved_CXX="$CXX"
+saved_LD="$LD"
+flag_wrap="$srcdir/scripts/wrap-compiler-for-flag-check"
+CC="$flag_wrap $CC"
+CXX="$flag_wrap $CXX"
+LD="$flag_wrap $LD"
+
 # We use the same hardening flags for C and C++.  We must check that each flag
 # is supported by both compilers.
 AC_DEFUN([check_cc_cxx_flag],
@@ -54,6 +65,11 @@ AS_IF([test x"$hardening" != x"no"], [
     check_link_flag([-Wl,-z,now], [HARDEN_LDFLAGS="$HARDEN_LDFLAGS -Wl,-z,now"])])])
 AC_SUBST([HARDEN_CFLAGS])
 AC_SUBST([HARDEN_LDFLAGS])
+
+# End of flag tests.
+CC="$saved_CC"
+CXX="$saved_CXX"
+LD="$saved_LD"
 
 
 AC_CONFIG_FILES([
