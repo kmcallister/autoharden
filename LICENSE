@@ -1,0 +1,20 @@
+The files in the m4/ subdirectory are copyright their respective authors and
+are governed by the licenses which appear in each file.
+
+For the rest of this repository, to the extent possible under law, I waive all
+copyright and related or neighboring rights.  The legal instrument of this
+waiver is the Creative Commons CC0 1.0 Universal Public Domain Dedication, as
+downloaded from http://creativecommons.org/publicdomain/zero/1.0/legalcode on
+May 4, 2012.  A copy of this document is available in this directory as
+cc0.html.  A non-binding summary is available at:
+
+    http://creativecommons.org/publicdomain/zero/1.0/
+
+Some of the source code fragments in this repository were originally written
+for the Mosh project (http://mosh.mit.edu/).  I am the original and sole author
+of these fragments, as provided here under the above waiver of rights.  Nothing
+in this repository shall affect the copyright status of any component of the
+Mosh project.
+
+  -- Keegan McAllister
+     May 4, 2012
