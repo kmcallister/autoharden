@@ -53,6 +53,7 @@ AS_IF([test x"$hardening" != x"no"], [
       check_cc_cxx_flag([--param ssp-buffer-size=1], [HARDEN_CFLAGS="$HARDEN_CFLAGS --param ssp-buffer-size=1"],
         [], [-fstack-protector-all])])])
 
+  # At the link step, we might want -pie (GCC) or -Wl,-pie (Clang on OS X)
   check_cc_cxx_flag([-fPIE],
    [check_link_flag([-fPIE -pie],
      [HARDEN_CFLAGS="$HARDEN_CFLAGS -fPIE"
