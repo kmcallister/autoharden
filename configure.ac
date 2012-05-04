@@ -46,11 +46,12 @@ AS_IF([test x"$hardening" != x"no"], [
   check_cc_cxx_flag([-D_FORTIFY_SOURCE=2], [HARDEN_CFLAGS="$HARDEN_CFLAGS -D_FORTIFY_SOURCE=2"])
 
   check_cc_cxx_flag([-fstack-protector-all],
-   [HARDEN_CFLAGS="$HARDEN_CFLAGS -fstack-protector-all"
-    check_cc_cxx_flag([-Wstack-protector], [HARDEN_CFLAGS="$HARDEN_CFLAGS -Wstack-protector"],
-      [], [-fstack-protector-all])
-    check_cc_cxx_flag([--param ssp-buffer-size=1], [HARDEN_CFLAGS="$HARDEN_CFLAGS --param ssp-buffer-size=1"],
-      [], [-fstack-protector-all])])
+   [check_link_flag([-fstack-protector-all],
+     [HARDEN_CFLAGS="$HARDEN_CFLAGS -fstack-protector-all"
+      check_cc_cxx_flag([-Wstack-protector], [HARDEN_CFLAGS="$HARDEN_CFLAGS -Wstack-protector"],
+        [], [-fstack-protector-all])
+      check_cc_cxx_flag([--param ssp-buffer-size=1], [HARDEN_CFLAGS="$HARDEN_CFLAGS --param ssp-buffer-size=1"],
+        [], [-fstack-protector-all])])])
 
   check_cc_cxx_flag([-fPIE],
    [check_link_flag([-fPIE -pie],
