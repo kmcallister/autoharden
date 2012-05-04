@@ -54,6 +54,8 @@ AS_IF([test x"$hardening" != x"no"], [
         [], [-fstack-protector-all])])])
 
   # At the link step, we might want -pie (GCC) or -Wl,-pie (Clang on OS X)
+  #
+  # The linker checks also compile code, so we need to include -fPIE as well.
   check_cc_cxx_flag([-fPIE],
    [check_link_flag([-fPIE -pie],
      [HARDEN_CFLAGS="$HARDEN_CFLAGS -fPIE"
